@@ -11,9 +11,11 @@ body {
 }
 
 .container {
-  margin: 2rem 1rem;
+  margin: 2rem auto;
+  max-width: 1024px;
 }
 
+/* Basic Responsive Layout */
 .container-1 *,
 .card {
   padding: 1rem;
@@ -62,6 +64,7 @@ body {
   }
 }
 
+/* Indefinite Responsive Columns  */
 .card {
   display: flex;
   justify-content: center;
@@ -86,11 +89,12 @@ li {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
 
+/* Mosaic Photo Gallery */
 .container-4 {
   display: grid;
   gap: 0.5rem;
 
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-auto-rows: 150px;
 }
 
@@ -100,4 +104,92 @@ li {
 
 .card-wide {
   grid-column: span 2 / auto;
+}
+
+/* Animated Grid */
+.container-5 {
+  height: 85vh;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "a b  c  d"
+    "l 🌟 🌟 e"
+    "k 🌟 🌟 f"
+    "j i  h  g";
+  grid-template-rows: repeat(4, 25%);
+  grid-template-columns: 240px auto auto 240px;
+
+  --stagger-delay: 100ms;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: hue-rotate(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+}
+
+.card.a {
+  grid-area: a;
+  animation-delay: calc(1 * var(--stagger-delay));
+}
+.card.b {
+  grid-area: b;
+  animation-delay: calc(2 * var(--stagger-delay));
+}
+.card.c {
+  grid-area: c;
+  animation-delay: calc(3 * var(--stagger-delay));
+}
+.card.d {
+  grid-area: d;
+  animation-delay: calc(4 * var(--stagger-delay));
+}
+.card.e {
+  grid-area: e;
+  animation-delay: calc(5 * var(--stagger-delay));
+}
+.card.f {
+  grid-area: f;
+  animation-delay: calc(6 * var(--stagger-delay));
+}
+.card.g {
+  grid-area: g;
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.card.h {
+  grid-area: h;
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.card.i {
+  grid-area: i;
+  animation-delay: calc(9 * var(--stagger-delay));
+}
+.card.k {
+  grid-area: j;
+  animation-delay: calc(10 * var(--stagger-delay));
+}
+.card.l {
+  grid-area: k;
+  animation-delay: calc(11 * var(--stagger-delay));
+}
+.card.m {
+  grid-area: l;
+  animation-delay: calc(12 * var(--stagger-delay));
+}
+.card.main {
+  grid-area: 🌟;
+  animation-delay: calc(13 * var(--stagger-delay));
+}
+
+.container-5 .card {
+  background-color: bisque;
+  animation: cardEntrance 700ms ease-out;
+  /* animation-fill-mode: backwards; */
 }
